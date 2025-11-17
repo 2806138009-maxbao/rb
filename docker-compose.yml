@@ -1,0 +1,79 @@
+version: "3.8"
+name: search-question-system
+
+services:
+  # MySQL数据库
+  mysql:
+    image: mysql:8.0
+    container_name: search-question-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: search_question_db
+      MYSQL_USER: searchuser
+      MYSQL_PASSWORD: searchpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./src/main/resources/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - search-question-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # 后端API服务
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: search-question-backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/search_question_db?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - ./uploads:/app/uploads
+      - ./models:/app/models
+    networks:
+      - search-question-network
+
+  # 前端Web服务
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: search-question-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - search-question-network
+
+  # Chroma向量数据库（可选）
+  chroma:
+    image: ghcr.io/chroma-core/chroma:latest
+    container_name: search-question-chroma
+    ports:
+      - "8000:8000"
+    volumes:
+      - chroma_data:/chroma/data
+    networks:
+      - search-question-network
+    environment:
+      ANONYMIZED_TELEMETRY: false
+
+volumes:
+  mysql_data:
+  chroma_data:
+
+networks:
+  search-question-network:
+    driver: bridge

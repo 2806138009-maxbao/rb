@@ -1,0 +1,19 @@
+{
+  "exampleData": [
+    {
+      "id": 1,
+      "name": "Sample Item 1",
+      "description": "This is a description for sample item 1."
+    },
+    {
+      "id": 2,
+      "name": "Sample Item 2",
+      "description": "This is a description for sample item 2."
+    },
+    {
+      "id": 3,
+      "name": "Sample Item 3",
+      "description": "This is a description for sample item 3."
+    }
+  ]
+}

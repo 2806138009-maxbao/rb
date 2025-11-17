@@ -1,0 +1,27 @@
+# Dependency directories
+node_modules/
+frontend/node_modules/
+Website Beautification with Autumn Theme/node_modules/
+
+# Build outputs
+dist/
+build/
+frontend/dist/
+Website Beautification with Autumn Theme/build/
+
+# Local data and uploads
+uploads/
+
+# Environment and editor files
+.claude/
+.mcp.json
+.env
+.env.*
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Logs and temp files
+*.log
+*.tmp

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <title>Dashboard Mock</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Segoe UI", sans-serif; background: #f7f8fa; color: #333; }
+    .app { display: flex; min-height: 100vh; padding: 20px; gap: 20px; }
+    .sidebar {
+      width: 190px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 24px 16px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .profile { display: flex; align-items: center; gap: 12px; }
+    .profile img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+    .profile-info h1 { font-size: 18px; }
+    .nav { display: flex; flex-direction: column; gap: 12px; }
+    .nav button {
+      padding: 10px 12px;
+      border: none;
+      background: #f5f6fb;
+      border-radius: 6px;
+      text-align: left;
+      font-size: 14px;
+      color: #666;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .nav button:hover { background: #e1e5f5; color: #333; }
+    .main { flex: 1; display: flex; gap: 20px; }
+    .left-column { flex: 1.6; display: flex; flex-direction: column; gap: 20px; }
+    .top-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
+      height: 120px;
+    }
+    .wide-card { height: 220px; }
+    .tall-card { height: 360px; }
+    .right-column { width: 240px; display: flex; flex-direction: column; gap: 20px; }
+    .right-column .card { height: 180px; }
+    .footer-tag {
+      margin-top: auto;
+      background: #3b3b3b;
+      color: #fff;
+      font-size: 18px;
+      padding: 16px;
+      border-radius: 6px;
+      text-align: center;
+    }
+    .floating-tv {
+      position: fixed;
+      bottom: 36px;
+      right: 36px;
+      width: 64px;
+      height: 64px;
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 5px 18px rgba(0, 0, 0, .2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .floating-tv::before { content: "▶"; font-size: 26px; color: #9da9c5; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="profile">
+        <img src="https://i.pravatar.cc/100?img=5" alt="avatar">
+        <div class="profile-info"><h1>康文昌</h1></div>
+      </div>
+      <nav class="nav">
+        <button>导航</button>
+        <button>导航</button>
+        <button>导航</button>
+        <button>导航</button>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <section class="left-column">
+        <div class="top-row">
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+        </div>
+        <div class="card wide-card"></div>
+        <div class="card wide-card"></div>
+        <div class="card wide-card"></div>
+      </section>
+
+      <section class="right-column">
+        <div class="card tall-card"></div>
+        <div class="card tall-card"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="footer-tag">接下来我们分析第二层</div>
+  <div class="floating-tv"></div>
+</body>
+</html>

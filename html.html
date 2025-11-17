@@ -1,0 +1,347 @@
+(cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' diff --git
+a/index.html b/index.html new file mode 100644 index
+0000000000000000000000000000000000000000..7bb0ae5eeb62d541f6655b6132cac67fb326cd0a
+--- /dev/null +++ b/index.html @@ -0,0 +1,271 @@ +<!DOCTYPE html> +
+<html lang="zh-CN">
+  +<head>
+    +
+    <meta charset="UTF-8" />
+    +
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    +
+    <title>宁静冥想时光</title>
+    +
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    +
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    +
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;500;700&family=Source+Sans+Pro:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    +
+    <style>
+      +    :root {
+      +      --bg: #f5f7f8;
+      +      --card-bg: rgba(255, 255, 255, 0.9);
+      +      --accent: #7da0a6;
+      +      --accent-dark: #55777d;
+      +      --text: #2f3b3d;
+      +    }
+      +
+      +    * {
+      +      box-sizing: border-box;
+      +    }
+      +
+      +    body {
+      +      margin: 0;
+      +      font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+      +      background: var(--bg);
+      +      color: var(--text);
+      +      line-height: 1.6;
+      +    }
+      +
+      +    header {
+      +      position: relative;
+      +      min-height: 50vh;
+      +      display: flex;
+      +      align-items: center;
+      +      justify-content: center;
+      +      text-align: center;
+      +      background: linear-gradient(135deg, rgba(125, 160, 166, 0.8), rgba(183, 210, 198, 0.8)),
+      +        url('https://images.unsplash.com/photo-1465101162946-4377e57745c3?auto=format&fit=crop&w=1600&q=80') center/cover;
+      +      color: #fff;
+      +      padding: 2rem;
+      +    }
+      +
+      +    header::after {
+      +      content: "";
+      +      position: absolute;
+      +      inset: 0;
+      +      background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 80%);
+      +      z-index: 0;
+      +    }
+      +
+      +    header .hero-content {
+      +      position: relative;
+      +      z-index: 1;
+      +      max-width: 720px;
+      +    }
+      +
+      +    h1 {
+      +      font-family: 'Noto Serif SC', serif;
+      +      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      +      margin-bottom: 1rem;
+      +      letter-spacing: 0.05em;
+      +    }
+      +
+      +    p.lead {
+      +      font-size: 1.05rem;
+      +      color: rgba(255, 255, 255, 0.9);
+      +    }
+      +
+      +    main {
+      +      max-width: 1080px;
+      +      margin: -80px auto 4rem;
+      +      padding: 0 1.5rem;
+      +    }
+      +
+      +    .session-grid {
+      +      display: grid;
+      +      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      +      gap: 1.5rem;
+      +    }
+      +
+      +    .session-card {
+      +      background: var(--card-bg);
+      +      border-radius: 18px;
+      +      box-shadow: 0 20px 45px -30px rgba(0, 0, 0, 0.4);
+      +      overflow: hidden;
+      +      display: flex;
+      +      flex-direction: column;
+      +      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      +      cursor: pointer;
+      +      position: relative;
+      +      isolation: isolate;
+      +    }
+      +
+      +    .session-card:hover {
+      +      transform: translateY(-6px);
+      +      box-shadow: 0 24px 60px -32px rgba(87, 121, 127, 0.6);
+      +    }
+      +
+      +    .session-card .image-wrapper {
+      +      position: relative;
+      +      padding-top: 60%;
+      +      overflow: hidden;
+      +    }
+      +
+      +    .session-card img {
+      +      position: absolute;
+      +      inset: 0;
+      +      width: 100%;
+      +      height: 100%;
+      +      object-fit: cover;
+      +      transition: transform 0.6s ease;
+      +    }
+      +
+      +    .session-card:hover img {
+      +      transform: scale(1.07);
+      +    }
+      +
+      +    .session-content {
+      +      padding: 1.5rem;
+      +      display: flex;
+      +      flex-direction: column;
+      +      gap: 0.6rem;
+      +    }
+      +
+      +    .badge {
+      +      align-self: flex-start;
+      +      padding: 0.35rem 0.75rem;
+      +      border-radius: 999px;
+      +      background: rgba(125, 160, 166, 0.2);
+      +      color: var(--accent-dark);
+      +      font-size: 0.85rem;
+      +      letter-spacing: 0.08em;
+      +    }
+      +
+      +    h2 {
+      +      margin: 0;
+      +      font-family: 'Noto Serif SC', serif;
+      +      font-size: 1.45rem;
+      +      color: var(--accent-dark);
+      +    }
+      +
+      +    .session-description {
+      +      font-size: 0.95rem;
+      +      color: rgba(47, 59, 61, 0.8);
+      +    }
+      +
+      +    .soundtrack {
+      +      margin-top: auto;
+      +      font-size: 0.85rem;
+      +      color: rgba(47, 59, 61, 0.7);
+      +    }
+      +
+      +    .pulse::after {
+      +      content: "";
+      +      position: absolute;
+      +      inset: 0;
+      +      border-radius: inherit;
+      +      background: rgba(125, 160, 166, 0.3);
+      +      animation: pulse 0.7s ease;
+      +      pointer-events: none;
+      +      z-index: -1;
+      +    }
+      +
+      +    @keyframes pulse {
+      +      from {
+      +        opacity: 0.8;
+      +        transform: scale(1);
+      +      }
+      +      to {
+      +        opacity: 0;
+      +        transform: scale(1.08);
+      +      }
+      +    }
+      +
+      +    footer {
+      +      text-align: center;
+      +      padding: 2rem 1rem 3rem;
+      +      color: rgba(47, 59, 61, 0.6);
+      +      font-size: 0.85rem;
+      +    }
+      +
+      +    @media (max-width: 640px) {
+      +      header {
+      +        min-height: 60vh;
+      +      }
+      +
+      +      main {
+      +        margin-top: -60px;
+      +      }
+      +    }
+      +
+    </style>
+    +
+  </head>
+  +
+  <body>
+    +
+    <header>
+      +
+      <div class="hero-content">
+        +
+        <h1>宁静冥想时光</h1>
+        +
+        <p class="lead">
+          从晨曦到夜晚，为不同节奏的你准备独特的冥想旅程。放慢呼吸，找回内心的平衡与力量。
+        </p>
+        +
+      </div>
+      +
+    </header>
+    + +
+    <main>
+      +
+      <div class="session-grid">
+        +
+        <article class="session-card" data-session="sunrise">
+          +
+          <div class="image-wrapper">
+            +
+            <img
+              src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80"
+              alt="晨光照耀冥想空间"
+            />
+            +
+          </div>
+          +
+          <div class="session-content">
+            + <span class="badge">晨间唤醒</span> +
+            <h2>日出呼吸仪式</h2>
+            +
+            <p class="session-description">
+              当第一缕阳光洒入房间，用缓慢的呼吸唤醒沉睡的身体，让心绪在柔和的光线中渐渐清明。
+            </p>
+            + <span class="soundtrack">建议音乐：轻盈风铃 · 雨林鸟鸣</span> +
+          </div>
+          +
+        </article>
+        + +
+        <article class="session-card" data-session="midday">
+          +
+          <div class="image-wrapper">
+            +
+            <img
+              src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=80"
+              alt="午间冥想空间"
+            />
+            +
+          </div>
+          +
+          <div class="session-content">
+            + <span class="badge">午间重置</span> +
+            <h2>正念茶歇</h2>
+            +
+            <p class="session-description">
+              暂停忙碌片刻，闭上眼睛感受茶香与指尖的温度，让专注力重新聚焦，焕发午后活力。
+            </p>
+            + <span class="soundtrack">建议音乐：手碟律动 · 微风树影</span> +
+          </div>
+          +
+        </article>
+        + +
+        <article class="session-card" data-session="sunset">
+          +
+          <div class="image-wrapper">
+            +
+            <img
+              src="https://images.unsplash.com/photo-1523395243481-158fcd7e71b5?auto=format&fit=crop&w=1200&q=80"
+              alt="夕阳下的冥想瑜伽"
+            />
+            +
+          </div>
+          +
+          <div class="session-content">
+            + <span class="badge">傍晚放松</span> +
+            <h2>余晖伸展冥想</h2>
+            +
+            <p class="session-description">
+              伴随夕阳慢慢下沉，配合深呼吸进行温和伸展，让身体舒展开来，迎接夜晚的安定。
+            </p>
+            + <span class="soundtrack">建议音乐：古琴轻语 · 海浪声</span> +
+          </div>
+          +
+        </article>
+        + +
+        <article class="session-card" data-session="night">
+          +
+          <div class="image-wrapper">
+            +
+            <img
+              src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80"
+              alt="夜晚星空下的冥想"
+            />
+            +
+          </div>
+          +
+          <div class="session-content">
+            + <span class="badge">夜间安眠</span> +
+            <h2>星空深度放松</h2>
+            +
+            <p class="session-description">
+              在星光与烛火的陪伴中放慢思绪，用渐进式放松安抚身体，为一夜好眠做好准备。
+            </p>
+            +
+            <span class="soundtrack">建议音乐：空灵合成器 · 轻柔白噪音</span> +
+          </div>
+          +
+        </article>
+        +
+      </div>
+      +
+    </main>
+    + +
+    <footer>+ © 2024 宁静冥想时光 · 留一点时间给自己 +</footer>
+    + +
+    <script>
+      +    document.querySelectorAll('.session-card').forEach(card => {
+      +      card.addEventListener('click', () => {
+      +        card.classList.remove('pulse');
+      +        void card.offsetWidth;
+      +        card.classList.add('pulse');
+      +      });
+      +      card.addEventListener('animationend', () => {
+      +        card.classList.remove('pulse');
+      +      });
+      +    });
+      +
+    </script>
+    +
+  </body>
+  +
+</html>
+
+EOF )

@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: search-question-system
+  
+  datasource:
+    url: jdbc:mysql://localhost:3306/search_question_db?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+  
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+# Application Configuration
+app:
+  upload:
+    path: ./uploads
+    allowed-types: jpg,jpeg,png,gif,pdf
+  
+  ocr:
+    enabled: true
+    model-path: ./models/paddleocr
+  
+  vector-db:
+    type: chroma
+    host: localhost
+    port: 8000
+    collection-name: questions
+
+logging:
+  level:
+    root: INFO
+    com.searchquestion: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+

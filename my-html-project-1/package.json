@@ -1,0 +1,17 @@
+{
+  "name": "my-html-project",
+  "version": "1.0.0",
+  "description": "A simple HTML project with basic structure and styles.",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "live-server src",
+    "build": "echo 'Build step not defined yet.'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}

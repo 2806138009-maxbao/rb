@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="献给亲爱的燕包，记录我们的点点滴滴">
+    <title>致 亲爱的燕包</title>
+
+    <!-- DNS 预连接优化 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+
+    <!-- 字体加载优化 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Smiley+Sans:ital@0;1&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Smiley+Sans:ital@0;1&display=swap" rel="stylesheet"></noscript>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="hero">
+        <div class="hero__bg" aria-hidden="true">
+            <div class="hero__base-gradient"></div>
+            <div class="hero__image"></div>
+            <div class="hero__blob"></div>
+        </div>
+
+        <div class="hero__watermarks" aria-hidden="true">
+            <span class="hero__watermark hero__watermark--one">FOR<br>MY<br>LOVE</span>
+            <span class="hero__watermark hero__watermark--two">FOR<br>MY<br>LOVE</span>
+            <span class="hero__watermark hero__watermark--three">FOR<br>MY<br>LOVE</span>
+            <span class="hero__watermark hero__watermark--four">FOR<br>MY<br>LOVE</span>
+        </div>
+
+        <section class="hero__card" aria-labelledby="hero-title">
+            <div class="hero__card-sheen"></div>
+            <div class="hero__card-inner">
+                <h1 class="hero__title" id="hero-title">致<br><span>亲爱的燕包</span></h1>
+                <div class="hero__message">
+                    <p class="fade-in" style="animation-delay: 0.2s">转眼间我们已经认识一年啦！</p>
+                    <p class="fade-in" style="animation-delay: 0.4s">现在看来真的发生了好多好多事呢</p>
+                    <p class="fade-in" style="animation-delay: 0.6s">所以我正好做了个网站</p>
+                    <p class="fade-in" style="animation-delay: 0.8s">来记录我们生活的点点滴滴</p>
+                    <p class="fade-in" style="animation-delay: 1s">至于怎么记录？</p>
+                    <p class="fade-in" style="animation-delay: 1.2s">那你就往下翻吧！</p>
+                </div>
+                <button class="hero__arrow" type="button" aria-label="向下查看更多" data-scroll-target="#scroll-target">
+                    <svg viewBox="0 0 240 240" role="img" aria-hidden="true">
+                        <path d="M50 90L120 160L190 90" fill="none" stroke="#B93A57" stroke-linecap="round" stroke-linejoin="round" stroke-width="20"/>
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <div class="hero__spacer" id="scroll-target" aria-hidden="true"></div>
+    </main>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
