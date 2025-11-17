@@ -175,6 +175,16 @@ server: {
 }
 ```
 
+### 前端 API 地址
+
+默认前端会请求 `http://localhost:8080/api`。要在 EdgeOne 或其他云端环境访问远程后端，可在 `frontend/.env.production`（或控制台环境变量）中配置：
+
+```bash
+VITE_API_BASE_URL=https://your-backend-domain.com/api
+```
+
+如不设置则会回落到本地地址，用于本地调试。
+
 ## 📦 项目结构
 
 ```
